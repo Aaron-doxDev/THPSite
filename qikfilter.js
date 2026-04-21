@@ -77,9 +77,16 @@
     if (document.getElementById('qikfilter-styles')) return;
     var css = [
       '.qikfilter-controls { display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin-bottom:24px; grid-column:1/-1; }',
-      '.qikfilter-search { flex:1 1 220px; min-width:180px; padding:10px 14px; font-size:15px;',
+      '.qikfilter-search-wrap { position:relative; flex:1 1 220px; min-width:180px; }',
+      '.qikfilter-search { width:100%; padding:10px 38px 10px 14px; font-size:15px;',
       '  border:1px solid #ccc; border-radius:6px; outline:none; transition:border-color .2s; }',
       '.qikfilter-search:focus { border-color:#555; }',
+      '.qikfilter-clear-btn { position:absolute; top:50%; right:8px; transform:translateY(-50%);',
+      '  width:24px; height:24px; padding:0; border:none; background:transparent; color:#888;',
+      '  font-size:20px; line-height:1; cursor:pointer; border-radius:50%; display:none;',
+      '  align-items:center; justify-content:center; }',
+      '.qikfilter-clear-btn.is-visible { display:flex; }',
+      '.qikfilter-clear-btn:hover { background:#e8e8e8; color:#333; }',
       '.qikfilter-toggles { display:flex; gap:0; border-radius:6px; overflow:hidden; border:1px solid #ccc; flex-shrink:0; }',
       '.qikfilter-toggle-btn { padding:9px 18px; font-size:14px; border:none; background:#f5f5f5;',
       '  color:#555; cursor:pointer; transition:background .2s, color .2s; white-space:nowrap; }',
@@ -154,6 +161,7 @@
         if (searchInput) {
           searchInput.value = author;
           searchTerm = author.toLowerCase();
+          if (clearBtn) clearBtn.classList.add('is-visible');
           render();
           // Scroll the search bar into view so the visitor can see/clear the filter
           searchInput.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -167,18 +175,55 @@
     var controls = document.createElement('div');
     controls.className = 'qikfilter-controls';
 
-    // Search input
+    // Search input (with inline clear-X button when non-empty)
     var searchInput = null;
+    var clearBtn    = null;
     if (searchFields.length > 0) {
+      var searchWrap = document.createElement('div');
+      searchWrap.className = 'qikfilter-search-wrap';
+
       searchInput = document.createElement('input');
       searchInput.type = 'text';
       searchInput.className = 'qikfilter-search';
       searchInput.placeholder = placeholder;
+
+      clearBtn = document.createElement('button');
+      clearBtn.type = 'button';
+      clearBtn.className = 'qikfilter-clear-btn';
+      clearBtn.setAttribute('aria-label', 'Clear search and filters');
+      clearBtn.innerHTML = '&times;';
+
+      // Toggle X visibility immediately on every keystroke
+      searchInput.addEventListener('input', function () {
+        if (searchInput.value) {
+          clearBtn.classList.add('is-visible');
+        } else {
+          clearBtn.classList.remove('is-visible');
+        }
+      });
+      // Apply the filter on a debounce so typing stays smooth
       searchInput.addEventListener('input', debounce(function () {
         searchTerm = searchInput.value.toLowerCase().trim();
         render();
       }, 300));
-      controls.appendChild(searchInput);
+
+      // Click X: clear the search AND reset the genre toggle to "All"
+      clearBtn.addEventListener('click', function () {
+        searchInput.value = '';
+        searchTerm = '';
+        clearBtn.classList.remove('is-visible');
+        if (toggleButtons.length > 0) {
+          toggleButtons.forEach(function (b) { b.classList.remove('active'); });
+          toggleButtons[0].classList.add('active');
+          activeToggle = null;
+        }
+        render();
+        searchInput.focus();
+      });
+
+      searchWrap.appendChild(searchInput);
+      searchWrap.appendChild(clearBtn);
+      controls.appendChild(searchWrap);
     }
 
     // View toggle (e.g. "Newest First | By Author")
