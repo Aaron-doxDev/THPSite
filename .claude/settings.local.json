@@ -2,7 +2,41 @@
   "permissions": {
     "allow": [
       "WebFetch(domain:truehavenpress.com)",
-      "WebFetch(domain:www.amazon.com)"
+      "WebFetch(domain:www.amazon.com)",
+      "Bash(curl -sL -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/131.0.0.0 Safari/537.36\" \"https://truehavenpress.com/\" -o /c/Users/Aaron/THPSite/_scratch/live-index.html)",
+      "Bash(awk '{print $1}')",
+      "Bash(python -c ' *)",
+      "Bash(python _scratch/rewrite.py)",
+      "Bash(python -m http.server 8765)",
+      "Bash(curl -sS -o /dev/null -w \"HTTP %{http_code} | size=%{size_download} bytes | time=%{time_total}s\\\\n\" http://localhost:8765/index.html)",
+      "Bash(curl -sS -o /dev/null -w '__TRACKED_VAR__: HTTP %{http_code}\\\\n' http://localhost:8765/__TRACKED_VAR__)",
+      "Bash(curl -sS -o /dev/null -w \"google fonts: HTTP %{http_code}\\\\n\" \"https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans\")",
+      "Bash(jobs -p)",
+      "Bash(xargs -r kill)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(netstat -ano)",
+      "Bash(powershell -Command \"Get-Process python -ErrorAction SilentlyContinue | Format-Table Id,ProcessName -AutoSize\")",
+      "Bash(powershell -Command \"Stop-Process -Id 15220 -Force\")",
+      "Bash(curl -sSL -A 'Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/120.0.0.0 Safari/537.36' -o C:/Users/Aaron/THPSite/_scratch/live-about.html https://truehavenpress.com/about/)",
+      "Bash(python _scratch/add_about.py)",
+      "Bash(awk 'NR==367,/^<div/{print NR\": \"$0}' index.html)",
+      "Bash(curl -sS -o /dev/null -w \"homepg3: HTTP %{http_code} | size=%{size_download}\\\\n\" \"http://localhost:8765/media/homepg3.jpg\")",
+      "Bash(python _scratch/rebrand_books.py)",
+      "Bash(sed -n '199,250p' styles.css)",
+      "Bash(sed -n '421,510p' styles.css)",
+      "Bash(curl -sS \"http://localhost:8765/styles.css\")",
+      "Bash(grep -v ':0$')",
+      "Bash(python3 -c ' *)",
+      "Bash(python _scratch/cleanup.py)",
+      "Bash(curl -sSL -A 'Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/120.0.0.0 Safari/537.36' https://airtable.com/appEEqEmkaCLhB1yw/pagdEhxNDqfsJZymS/form -o C:/Users/Aaron/THPSite/_scratch/airtable-form.html)",
+      "Bash(grep -oE '\"name\":\"[^\"]{1,80}\"|\"type\":\"[a-zA-Z]+\"|\"description\":\"[^\"]{0,80}\"' C:/Users/Aaron/THPSite/_scratch/airtable-form.html)",
+      "mcp__Claude_in_Chrome__list_connected_browsers",
+      "mcp__Claude_in_Chrome__select_browser",
+      "mcp__Claude_in_Chrome__browser_batch",
+      "Bash(grep -n '</header>$\\\\|<footer class=' index.html)",
+      "Bash(grep -n '<head>\\\\|</head>\\\\|<body class\\\\|<div class=\"wp-site-blocks\">\\\\|</div>\\\\s*$' index.html)",
+      "Bash(python3)",
+      "Bash(python _scratch/build_submit.py)"
     ]
   }
 }

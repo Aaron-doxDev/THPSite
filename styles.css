@@ -1,6 +1,10 @@
 /* ============================================================
    True Haven Press — Stylesheet
-   Colors: Primary #555936 | Secondary #868C58 | Accent #73412F
+   Brand palette aligned with index/about:
+     Primary   #754633 (warm brown) — buttons, header band
+     Secondary #182470 (navy)       — headings
+     Tertiary  #cbb299 (cream/tan)  — soft borders, hover tints
+     Contrast  #4b5236 (olive)      — dark surfaces
    ============================================================ */
 
 *, *::before, *::after {
@@ -10,21 +14,28 @@
 }
 
 :root {
-  --color-primary:    #555936;
-  --color-secondary:  #868C58;
-  --color-accent:     #73412F;
-  --color-accent-dark:#5e3424;
-  --color-primary-dark: #444929;
-  --color-bg:         #FAFAF7;
-  --color-bg-alt:     #F2F0E8;
-  --color-dark:       #2A2A22;
-  --color-text:       #3A3A30;
-  --color-text-light: #666658;
-  --color-border:     #D8D5C4;
-  --font-serif:       Georgia, 'Times New Roman', Times, serif;
-  --font-sans:        -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --max-width:        1100px;
-  --section-pad:      5rem;
+  --color-primary:      #754633;
+  --color-secondary:    #182470;
+  --color-accent:       #754633;
+  --color-accent-dark:  #5a3527;
+  --color-primary-dark: #5a3527;
+  --color-tertiary:     #cbb299;
+  --color-contrast:     #4b5236;
+  --color-bg:           #ffffff;
+  --color-bg-alt:       #f6f3ee;
+  --color-dark:         #182470;
+  --color-text:         #1f2647;
+  --color-text-light:   #666670;
+  --color-border:       #e6dfd1;
+  --font-serif:         'Poppins', system-ui, -apple-system, sans-serif;
+  --font-sans:          'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --max-width:          1100px;
+  --section-pad:        5rem;
+
+  /* Tunable: minimum width per book card. Lower = more books per row.
+     ~140 ⇒ 6/row at 1280px · ~180 ⇒ 5/row · ~220 ⇒ 4/row · ~280 ⇒ 3/row */
+  --book-card-min:      180px;
+  --book-image-height:  260px;
 }
 
 html {
@@ -55,8 +66,9 @@ body {
 
 h1, h2, h3, h4 {
   font-family: var(--font-serif);
-  color: var(--color-primary);
-  line-height: 1.3;
+  color: var(--color-secondary);
+  line-height: 1.2;
+  font-weight: 600;
 }
 
 h1 { font-size: 2.5rem; }
@@ -219,11 +231,12 @@ a:hover {
 
 .hero-tagline {
   font-family: var(--font-serif);
-  font-size: 1rem;
-  letter-spacing: 0.14em;
+  font-size: 0.9rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--color-secondary);
-  margin-bottom: 1.5rem;
+  color: var(--color-tertiary);
+  font-weight: 600;
+  margin-bottom: 1rem;
 }
 
 .hero-intro {
@@ -420,7 +433,7 @@ a:hover {
 
 .books-section {
   padding: var(--section-pad) 0;
-  background: #fff;
+  background: var(--color-bg-alt);
 }
 
 .books-section h2 {
@@ -436,62 +449,78 @@ a:hover {
 
 .portfolio-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 2.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(var(--book-card-min), 1fr));
+  gap: 1.25rem;
 }
 
 .portfolio-item {
-  background: var(--color-bg-alt);
-  border-radius: 4px;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 5px;
   overflow: hidden;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.09);
-  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 2px rgba(24, 36, 112, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .portfolio-item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.14);
+  transform: translateY(-2px);
+  border-color: var(--color-tertiary);
+  box-shadow: 0 8px 20px rgba(24, 36, 112, 0.1);
 }
 
 .portfolio-image {
   width: 100%;
-  height: 360px;
+  height: var(--book-image-height);
   object-fit: contain;
   display: block;
-  background: var(--color-bg);
-  padding: 1rem;
+  background: var(--color-bg-alt);
+  padding: 0.75rem;
 }
 
 .portfolio-content {
-  padding: 1.5rem;
+  padding: 0.85rem 0.95rem 1rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0.15rem;
 }
 
 .portfolio-content h3 {
-  font-size: 1.15rem;
-  margin-bottom: 0.2rem;
+  font-size: 0.92rem;
+  line-height: 1.25;
+  margin-bottom: 0.1rem;
+  color: var(--color-secondary);
 }
 
 .portfolio-content .client {
-  color: var(--color-secondary);
-  font-style: italic;
-  font-size: 0.88rem;
-  margin-bottom: 0.75rem;
+  color: var(--color-text-light);
+  font-style: normal;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
 }
 
 .portfolio-content p {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--color-text-light);
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .portfolio-link {
   display: inline-block;
+  align-self: flex-start;
   background: var(--color-accent);
   color: #fff;
-  padding: 0.5rem 1.25rem;
-  border-radius: 3px;
-  font-size: 0.88rem;
+  padding: 0.4rem 0.95rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
   font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-top: auto;
   transition: background 0.2s;
 }
 
@@ -860,17 +889,36 @@ a:hover {
   color: var(--color-text-light);
 }
 
-/* Page Hero (books.html and other inner pages) */
+/* Page Hero (about / privacy / terms — slim banner with page title) */
 .page-hero {
-  background: linear-gradient(150deg, var(--color-primary) 0%, #3d4128 100%);
+  background: linear-gradient(160deg, var(--color-secondary) 0%, #0d1340 100%);
   color: #fff;
   text-align: center;
-  padding: 4.5rem 1.5rem 4rem;
+  padding: 1.75rem 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.page-hero .hero-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.page-hero .hero-tagline {
+  display: none;
 }
 
 .page-hero h1 {
   color: #fff;
-  margin-bottom: 0.75rem;
+  font-size: clamp(1.4rem, 1.4rem + ((1vw - 0.2rem) * 1), 1.8rem);
+  line-height: 1.2;
+  margin-bottom: 0.25rem;
+}
+
+.page-hero .hero-intro {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 0;
 }
 
 /* ============================================================
@@ -949,5 +997,360 @@ a:hover {
 
   .footer-links {
     gap: 1.25rem;
+  }
+}
+
+/* ============================================================
+   BOOKS PAGE — body wrapper sits inside WP block frame
+   ============================================================ */
+
+body.books-page {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+}
+
+body.books-page .books-main-wrapper {
+  background: var(--color-bg-alt);
+}
+
+/* The WP brown header band sits above .page-hero — the hero handles its own
+   border, no top spacing needed here. */
+body.books-page .page-hero {
+  margin-top: 0;
+}
+
+/* ============================================================
+   QIKFILTER UI — brand overrides
+   The widget injects its own baseline styles via JS; these
+   higher-specificity rules retint it to match the brand palette.
+   ============================================================ */
+
+.books-section .qikfilter-controls {
+  margin-bottom: 2rem;
+  gap: 0.75rem;
+}
+
+.books-section .qikfilter-search {
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.65rem 2.4rem 0.65rem 1.1rem;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  background: #fff;
+  color: var(--color-text);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.books-section .qikfilter-search:focus {
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 0 3px rgba(24, 36, 112, 0.12);
+}
+
+.books-section .qikfilter-search-wrap {
+  flex: 1 1 240px;
+}
+
+.books-section .qikfilter-clear-btn {
+  right: 12px;
+}
+
+.books-section .qikfilter-toggles {
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.books-section .qikfilter-toggle-btn {
+  background: transparent;
+  color: var(--color-text-light);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.55rem 1.1rem;
+  border: none;
+}
+
+.books-section .qikfilter-toggle-btn:not(:last-child) {
+  border-right: 1px solid var(--color-border);
+}
+
+.books-section .qikfilter-toggle-btn:hover {
+  background: rgba(203, 178, 153, 0.18);
+  color: var(--color-secondary);
+}
+
+.books-section .qikfilter-toggle-btn.active {
+  background: var(--color-secondary);
+  color: #fff;
+}
+
+.books-section .qikfilter-group-header {
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.4rem;
+}
+
+.books-section .qikfilter-group-label {
+  color: var(--color-secondary);
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.books-section .qikfilter-see-more-author {
+  color: var(--color-accent);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding: 0.4rem 0 0;
+}
+
+.books-section .qikfilter-see-more-author:hover {
+  color: var(--color-accent-dark);
+}
+
+.books-section .qikfilter-no-results {
+  color: var(--color-text-light);
+  font-style: italic;
+  font-size: 1rem;
+  padding: 3rem 1rem;
+}
+
+/* ============================================================
+   SUBMIT MANUSCRIPT FORM
+   ============================================================ */
+
+body.submit-page {
+  background-color: var(--color-bg-alt);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+}
+
+.submit-main {
+  padding: 0 0 4rem;
+}
+
+.submit-container {
+  max-width: 760px;
+  padding: 0 1.5rem;
+}
+
+.submit-form {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 2rem 2rem 2.25rem;
+  box-shadow: 0 4px 18px rgba(24, 36, 112, 0.06);
+}
+
+.submit-intro {
+  margin: 0 0 1.5rem;
+  color: var(--color-text-light);
+  font-size: 0.95rem;
+}
+
+.submit-intro .req-mark {
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.form-section {
+  border: none;
+  padding: 0;
+  margin: 0 0 1.75rem;
+}
+
+.form-section legend {
+  color: var(--color-secondary);
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-bottom: 1rem;
+  padding: 0;
+  width: 100%;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.5rem;
+}
+
+.field {
+  margin-bottom: 1.1rem;
+}
+
+.field label,
+.label-as-block {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-secondary);
+  margin-bottom: 0.35rem;
+}
+
+.req-mark {
+  color: var(--color-accent);
+  font-weight: 700;
+  margin-left: 0.1rem;
+}
+
+.field input[type="text"],
+.field input[type="email"],
+.field input[type="tel"],
+.field select,
+.field textarea {
+  width: 100%;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--color-text);
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 0.55rem 0.75rem;
+  line-height: 1.4;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 0 3px rgba(24, 36, 112, 0.12);
+}
+
+.field input[type="file"] {
+  width: 100%;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  padding: 0.5rem 0;
+  color: var(--color-text);
+  background: transparent;
+  border: 1px dashed var(--color-border);
+  border-radius: 6px;
+  padding: 0.85rem;
+}
+
+.field input[type="file"]::file-selector-button {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: var(--color-secondary);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 0.45rem 1rem;
+  margin-right: 0.85rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.field input[type="file"]::file-selector-button:hover {
+  background: #0d1340;
+}
+
+.field-hint {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.8rem;
+  color: var(--color-text-light);
+}
+
+.checkbox-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.5rem 1rem;
+  margin-top: 0.25rem;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 400;
+  font-size: 0.92rem;
+  color: var(--color-text);
+  margin-bottom: 0;
+}
+
+.checkbox-row input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--color-secondary);
+  cursor: pointer;
+}
+
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.submit-btn {
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 0.75rem 2rem;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background: var(--color-accent-dark);
+}
+
+.submit-btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.submit-status {
+  margin: 0;
+  font-size: 0.95rem;
+  min-height: 1.4em;
+}
+
+.submit-status.is-success {
+  color: var(--color-secondary);
+  font-weight: 600;
+}
+
+.submit-status.is-error {
+  color: #b3261e;
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .submit-form {
+    padding: 1.5rem 1.25rem;
+    border-radius: 8px;
+  }
+  .checkbox-group {
+    grid-template-columns: 1fr;
   }
 }
