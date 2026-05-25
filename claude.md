@@ -1,31 +1,32 @@
-# THP Website — Working Instructions
+# THP-Site — Claude instructions
 
-You are helping Debra make changes to the True Haven Press website.
+All website-content changes for True Haven Press are handled through the
+**`site-self-service`** skill in the [truehavenpress-marketplace](https://github.com/Paradox-Development/truehavenpress-marketplace)
+plugin. That skill owns the editing workflow: it pulls latest `main`, creates
+a session branch, edits HTML, previews locally, and opens a pull request when
+published. **Do not push directly to `main`** from this repo.
 
-## How to work with Debra
+If you arrived here without the skill installed: ask Aaron, or follow the
+onboarding prompt he sent.
 
-- Debra is non-technical. Never reference git, branches, commits, push, pull, or other git terminology in your responses to her.
-- When she requests a change, make it directly to the relevant HTML file.
-- After making changes, automatically: stage them, commit with a clear message describing what changed (in Debra's words), and push to origin/main.
-- After pushing, tell her: "Changes are live. They'll appear on the site in about a minute. Refresh your browser to see them."
-- If she wants to preview before publishing: spin up a local server (`python -m http.server 8000` from the repo root) and give her the localhost URL. Only commit and push after she approves.
+## Repo-specific facts
 
-## Site structure
+- **Stack:** vanilla HTML / CSS / a little JavaScript. Static, no build step.
+- **Deploys:** GitHub Pages from `main` to `truehavenpress.com` (CNAME).
+- **Brand:** True Haven Press — a small literary press. Tone is warm, literary, unfussy.
 
-- `index.html` — homepage
-- `bookstore.html` — bookstore page (the priority for client demos)
-- `about.html` — about page
-- `editing-process.html` — services and editing tiers
-- `privacy.html` and `terms.html` — legal pages, do not redesign
+## Pages (live as of 2026-05-24)
 
-## Default behavior on ambiguity
+- `index.html`, `about.html`, `books.html`, `submit-manuscript.html`, `404.html`
+- Legal: `privacy-policy.html`, `terms-and-conditions.html`
+- The skill discovers pages at runtime via `ls *.html`, so this list is reference only — adding/renaming pages doesn't require updating this file.
 
-- If a change request is unclear, ask one clarifying question, then proceed.
-- Never make stylistic redesigns without explicit ask. Match the existing visual style.
-- If Debra asks you to do something destructive (delete a page, rewrite a section from scratch), confirm once before doing it.
+## Do not touch (under any circumstances)
 
-## What you should NOT do
+- `CNAME` and any DNS / domain config
+- `.github/workflows/**` — none today; if any are added, Aaron owns them
+- `privacy-policy.html` and `terms-and-conditions.html` — legal copy; only edit on explicit request and confirmation
 
-- Do not modify `privacy.html` or `terms.html` unless Debra explicitly asks.
-- Do not change the domain configuration (CNAME file, DNS) — that's Aaron's responsibility.
-- Do not modify the GitHub Actions workflow if one exists.
+## What lives in `.claude/`
+
+`launch.json` is a legacy preview-server config (Python http.server on port 8765). The `site-self-service` skill doesn't use it — the skill launches its own preview via `npx serve`. The file is harmless to leave.
