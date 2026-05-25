@@ -2,43 +2,36 @@
 
 This is your website. To make changes, just talk to Claude.
 
-## Getting started
+## How it works
 
-1. Open the **Claude Code** app on your computer. (Aaron walked you through how — if you can't find it, text him.)
-2. Make sure Claude is pointed at this folder, **THPSite**. The first time you open Claude Code, it will ask which folder to work in. Pick **THPSite**. After that, it usually remembers.
-3. You'll see a chat box. That's where you type to Claude. There's nothing else you need to click.
+You don't need to open this folder, click around the website's files, or know what any of these names mean. Aaron set up a tool that handles all of that for you. Your part is just the conversation.
 
-That's the whole setup. Everything from here is just typing what you want.
+1. Open **Claude Code** (the Claude app Aaron walked you through installing).
+2. Say what you'd like to change on the site. Be as specific or vague as you'd like — Claude will figure it out and ask if it needs to.
+3. Claude will give you a **preview link** so you can see the change in your browser before it goes anywhere.
+4. Look at the preview. Ask for tweaks. Walk away and come back if you need to — preview links last as long as you need.
+5. When you're happy, tell Claude to publish.
+6. The site updates a few minutes later. (Aaron has a quick verification step in there — you don't have to do anything during that wait.)
 
-## How to make a change
+A typical change is under a minute of conversation, then a few minutes of waiting for the live site to refresh.
 
-1. Tell Claude what you want to change. Be as specific or vague as you'd like — Claude will figure it out and ask if it needs to.
-2. Claude will make the change and put it live on the site.
-3. Refresh truehavenpress.com in your browser to see it.
+## Preview is the default
 
-A change usually takes Claude under a minute. Sometimes it's near-instant. The site itself updates within about a minute after Claude finishes.
+You never need to ask for one — Claude shows you a preview before publishing every time. The flow is:
 
-## ⚠️ Important: "live" means live
-
-When Claude tells you it published a change, that change is on **truehavenpress.com right then** — visible to anyone who visits the site. There's no draft mode, no staging, no "I'll come back to this later." Once it's published, the world sees it.
-
-So **be intentional about when you tell Claude to publish.** If you're still working things out, ask for a preview first (next section).
-
-## Want to see a change before it goes live?
-
-Just tell Claude something like:
-
-> "Show me what this looks like before publishing."
+> "Update the books page to add [...]"
 >
-> "Don't publish yet — I want to see it first."
+> *Claude makes the change, gives you a preview link.*
 >
-> "Make this change but keep it as a preview."
+> *You look at it. You ask for adjustments, or you say "go ahead."*
+>
+> *Claude publishes only when you say so.*
 
-Claude will open a private preview link only you can see. Take your time, ask for adjustments, walk away and come back. Nothing is live until you say something like "okay, publish it" or "go ahead and put it live."
+You don't need to memorize specific words. "Make it live", "publish it", "looks good — push it" — Claude understands the intent.
 
-## Changed your mind?
+## Changing your mind
 
-Tell Claude. Even after something is live, you can say:
+Even after something is live, it's not permanent. Tell Claude (or text Aaron):
 
 > "Undo that."
 >
@@ -46,14 +39,30 @@ Tell Claude. Even after something is live, you can say:
 >
 > "Roll back the last change."
 
-Claude can revert recent changes the same way it makes them — in under a minute.
+Any recent change can be reversed in about the same time it took to make.
 
-## If something goes wrong
+## If something feels off
 
-Tell Aaron. Don't try to fix it yourself. Aaron has a backup of every version of every page going back to the day the site launched. He can restore anything in under a minute, including pages you don't think are recoverable.
+Tell Aaron. Don't try to fix it yourself. Aaron has a full history of every version of every page going back to launch — anything broken is recoverable, including pages you don't think can come back.
 
-## What you can't break
+## You can't break it permanently
 
-Nothing permanent. Every change is recorded. If you accidentally delete the homepage, Aaron can restore it. Wrong colors, broken links, missing photos, a paragraph you regret — all reversible.
+Every change is recorded. Wrong colors, broken links, missing photos, a paragraph you regret — all reversible. Experiment freely.
 
-So **experiment freely.** The only thing to be careful about is publishing something you're not ready for the public to see. As long as you ask for a preview when you're still deciding, you really can't get yourself into trouble.
+The only thing to be careful about is publishing something you're not quite ready for. The preview step exists to make that easy to avoid: look at it first, fix anything that's off, then say go.
+
+## Things Claude won't touch without you asking
+
+A few things stay off-limits unless you ask for them specifically:
+
+- The **privacy policy** and **terms and conditions** pages — legal copy, edited only on request.
+- The **domain configuration** (the part that points `truehavenpress.com` at this site) — Aaron's job.
+- The **automated parts** behind the scenes — same.
+
+If you genuinely want to update any of those, just say so plainly and Claude will confirm once before doing it.
+
+## Who to talk to
+
+- **For website changes** — talk to Claude.
+- **For anything weird, broken, or surprising** — text Aaron.
+- **For the domain, hosting, or "wait, where does Claude get this stuff from?"** — also Aaron.
