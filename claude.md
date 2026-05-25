@@ -1,7 +1,7 @@
 # THP-Site — Claude instructions
 
 All website-content changes for True Haven Press are handled through the
-**`site-self-service`** skill in the [truehavenpress-marketplace](https://github.com/Paradox-Development/truehavenpress-marketplace)
+**`site-self-service`** skill in the [truehavenpress-marketplace](https://github.com/TrueHavenPress/truehavenpress-marketplace)
 plugin. That skill owns the editing workflow: it pulls latest `main`, creates
 a session branch, edits HTML, previews locally, and opens a pull request when
 published. **Do not push directly to `main`** from this repo.
