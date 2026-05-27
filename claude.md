@@ -90,14 +90,36 @@ on its own; you do not merge it yourself.
 ## First time on a machine
 
 If `git` or `gh` isn't found, or `gh auth status` shows not logged in, this machine
-isn't set up yet. Either walk her through `gh auth login` once (a quick browser
-sign-in) or have her loop in Aaron. After that first time, every session is instant.
+isn't set up yet. Walk her through `gh auth login` once (a quick browser sign-in);
+loop in Aaron only if that doesn't work. After that first time, every session is instant.
 
 ## When something goes wrong
 
-If a step errors (preview won't start, the push/PR fails, a merge conflict on pull),
-don't debug it with Debra — tell her there's a snag, reassure her that her changes are
-saved, and offer to loop in Aaron. Never leave her edits unsaved or lost.
+Your default is to **fix it together with Debra**, calmly and in plain language — she
+shouldn't have to wait on Aaron for routine hiccups. Walk her through one step at a
+time and explain what you're doing in everyday terms. Common ones you can handle
+yourselves:
+
+- **Preview won't start / "port in use":** start it on a different port (e.g. 8766 or
+  3000) and give her the new link; if `npx serve` isn't available, use `python -m http.server`.
+- **It asks her to sign in to GitHub, or a publish is rejected for permissions:** run
+  `gh auth login` and walk her through the browser sign-in ("a tab will open — sign in
+  with your True Haven Press account"), then retry.
+- **A tool is missing (git, GitHub CLI, Node):** offer to install it (e.g.
+  `winget install ...`); she may see a Windows permission pop-up — tell her to click Yes —
+  then retry.
+- **A publish was blocked for touching a protected file:** editing a legal page is fine,
+  but `CNAME` or the automation isn't — tell her that specific part needs Aaron, and that
+  anything else in the change can still go through.
+
+Two rules that never bend:
+
+1. **Never lose her work.** If you can't publish, her edits are still saved — say so and
+   reassure her.
+2. **Escalate only when it's genuinely serious, or you've tried and truly can't fix it** —
+   e.g. a merge conflict you can't cleanly resolve, the live site is down, GitHub access is
+   fully broken, or anything touching the domain/DNS. For the small stuff, you and Debra
+   have it.
 
 ## Pages (reference — discovered at runtime)
 
