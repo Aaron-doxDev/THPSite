@@ -18,14 +18,19 @@ onboarding prompt he sent.
 ## Pages (live as of 2026-05-24)
 
 - `index.html`, `about.html`, `books.html`, `submit-manuscript.html`, `404.html`
-- Legal: `privacy-policy.html`, `terms-and-conditions.html`
+- `privacy-policy.html`, `terms-and-conditions.html` — legal pages, fully editable like any other content
 - The skill discovers pages at runtime via `ls *.html`, so this list is reference only — adding/renaming pages doesn't require updating this file.
 
-## Do not touch (under any circumstances)
+## Do not touch (operational safety, not permission)
 
-- `CNAME` and any DNS / domain config
-- `.github/workflows/**` — none today; if any are added, Aaron owns them
-- `privacy-policy.html` and `terms-and-conditions.html` — legal copy; only edit on explicit request and confirmation
+The site and domain belong to True Haven Press — this short list isn't about what
+the owner is allowed to change, it's about what shouldn't go through the
+self-service editor:
+
+- `CNAME` and any DNS / domain config — a wrong value takes the whole site
+  offline and isn't a content edit. Domain changes go through Aaron directly.
+- `.github/workflows/**` — the auto-publish automation lives here; the publishing
+  process shouldn't rewrite its own rules unsupervised. Aaron owns it.
 
 ## What lives in `.claude/`
 
