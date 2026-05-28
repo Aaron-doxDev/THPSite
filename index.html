@@ -137,6 +137,34 @@ img.latex{border:none;vertical-align:middle}.video-player{border:0;margin:auto;p
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 <link rel="icon" type="image/jpeg" href="media/true-haven-press-logo2-500-x-500-px-1.jpg">
 <link rel="apple-touch-icon" href="media/true-haven-press-logo2-500-x-500-px-1.jpg">
+<style id="thp-banner-cta">
+/* Top banner: place the "Submit Query" button centered horizontally and
+   vertically in the space between the logo block and the bottom of the banner. */
+#CTA1 {
+  align-items: stretch;            /* inner container spans the full banner width */
+  min-height: 0 !important;        /* size the banner to its content + the reduced spacing */
+  padding-top: 0;
+  padding-bottom: 0;
+}
+#CTA1 > .wp-block-cover__inner-container {
+  display: flex;
+  flex-direction: column;
+  gap: 39px;                       /* gap between the columns and the button (~33% less than 58px) */
+  padding-top: 39px;
+  padding-bottom: 39px;            /* equal spacing above the columns and below the button */
+}
+#CTA1 > .wp-block-cover__inner-container > * {
+  margin-top: 0;
+  margin-bottom: 0;                /* neutralize default stacking margins so spacing is predictable */
+}
+#CTA2 {
+  width: 100%;                     /* keep the logo/words block at full width so the words don't wrap */
+}
+#CTA3 {
+  align-self: stretch;             /* span the full banner width */
+  align-items: center;             /* center the button horizontally */
+}
+</style>
 </head>
 
 <body class="home is-block-theme">
