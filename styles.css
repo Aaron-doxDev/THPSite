@@ -447,6 +447,25 @@ a:hover {
   margin-bottom: 3rem;
 }
 
+.books-intro {
+  max-width: 75ch;
+  margin: 0 auto 3rem;
+}
+
+.books-intro h2 {
+  text-align: left;
+}
+
+.books-intro p {
+  text-align: justify;
+  color: var(--color-text-light);
+  margin-bottom: 1.25rem;
+}
+
+.books-intro p:last-child {
+  margin-bottom: 0;
+}
+
 .portfolio-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(var(--book-card-min), 1fr));
